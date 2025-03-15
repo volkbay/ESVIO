@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
     cv_bridge
     camera_model
     tf
+    ceres_catkin
     )
 
 find_package(OpenCV REQUIRED)
