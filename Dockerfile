@@ -1,6 +1,7 @@
 # [volkbay, Mar2025]
 FROM osrf/ros:noetic-desktop-full
 
+# Modify as you like
 ENV WORKSPACE /catkin_ws_dvs
 
 RUN apt-get update && \
@@ -27,7 +28,7 @@ RUN cd ${WORKSPACE}/src && \
 RUN	echo "export NVIDIA_VISIBLE_DEVICES=all" >> /root/.bashrc
 RUN	echo "export NVIDIA_DRIVER_CAPABILITIES=all" >> /root/.bashrc
 RUN	echo "export QT_X11_NO_MITSHM=1" >> /root/.bashrc
-RUN echo "source ${WORKSPACE}/devel/setup.bash"
+RUN echo "source ${WORKSPACE}/devel/setup.bash" >> /root/.bashrc
 
 ENTRYPOINT ["/bin/bash"]
 
