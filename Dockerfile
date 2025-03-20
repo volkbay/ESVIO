@@ -6,8 +6,11 @@ ENV WORKSPACE=/catkin_ws_dvs
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    git nano autoconf libtool libsuitesparse-dev python3-catkin-tools python3-osrf-pycommon && \
+    git nano autoconf libtool libsuitesparse-dev python3-catkin-tools python3-osrf-pycommon \
+    gnome-terminal dbus-x11 python3-pip && \
     apt-get upgrade -y
+
+RUN pip install evo
 
 RUN mkdir -p ${WORKSPACE}/src && \
     cd ${WORKSPACE} && \
