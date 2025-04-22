@@ -7,10 +7,10 @@ ENV WORKSPACE=/catkin_ws_dvs
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     git nano autoconf libtool libsuitesparse-dev python3-catkin-tools python3-osrf-pycommon \
-    gnome-terminal dbus-x11 python3-pip && \
+    gnome-terminal dbus-x11 python3-pip wget && \
     apt-get upgrade -y
 
-RUN pip install evo
+RUN pip install evo h5py hdf5plugin
 
 RUN mkdir -p ${WORKSPACE}/src && \
     cd ${WORKSPACE} && \
@@ -39,7 +39,7 @@ ENTRYPOINT ["/bin/bash"]
 
 
 # Running Container:
-# export DATASET_LOC=/hdd/prj/volkan/ebv/img
+# export DATASET_LOC=/... # YOUR DATA LOCATION
 # docker run -it  -v /run/user/1000/gdm/Xauthority:/root/.Xauthority \
 # -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v ${DATASET_LOC}:/data -e DISPLAY \
 # --env=NVIDIA_DRIVER_CAPABILITIES=all --gpus all <image_name>
