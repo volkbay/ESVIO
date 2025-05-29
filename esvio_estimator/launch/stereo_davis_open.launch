@@ -26,5 +26,8 @@
 
     <param name="streaming_rate" value="60"/>
   </node>
+
+  <!-- configure -->
+  <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" />
 </launch>
 

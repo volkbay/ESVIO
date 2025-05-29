@@ -61,13 +61,14 @@ struct EventMessageEditor
 int main(int argc, char* argv[])
 {
   ros::init(argc, argv, "event_message_editor");
-
-  std::string src_bag_path(argv[1]);
-  std::string dst_bag_path(argv[2]);
+  std::string src_bag_path;
+  std::string dst_bag_path;
   rosbag::Bag bag_src, bag_dst;
+
+  ros::param::get("/bag_in", src_bag_path);
+  ros::param::get("/bag_out", dst_bag_path);
   bag_src.open(src_bag_path.c_str(), rosbag::bagmode::Read);
   bag_dst.open(dst_bag_path.c_str(), rosbag::bagmode::Write);
-
   if(!bag_src.isOpen())
   {
     ROS_INFO("No rosbag is found in the give path.");
@@ -76,7 +77,7 @@ int main(int argc, char* argv[])
   else
   {
     ROS_INFO("***********Input Bag File Name ***********");
-    ROS_INFO(argv[1]);
+    ROS_INFO("path: %s", src_bag_path.c_str());
     ROS_INFO("******************************************");
   }
 
@@ -88,25 +89,21 @@ int main(int argc, char* argv[])
   else
   {
     ROS_INFO("***********Output Bag File Name ***********");
-    ROS_INFO(argv[2]);
+    ROS_INFO("path: %s", dst_bag_path.c_str());
     ROS_INFO("***************************");
   }
 
   // const double frequency = 1000;
-  const double frequency = 30;
+  const double frequency = 60;
 
   // process events
   std::vector<std::string> topics;
-  topics.push_back(std::string("/DAVIS346_left/events"));
-  topics.push_back(std::string("/DAVIS346_right/events"));
-  topics.push_back(std::string("/DVXplorer_left/events"));
-  topics.push_back(std::string("/DVXplorer_right/events"));
+  topics.push_back(std::string("left_event"));
+  topics.push_back(std::string("right_event"));
   
   std::vector<std::string> topics_rename;
-  topics_rename.push_back(std::string("/DAVIS346_left/30HZ_events"));
-  topics_rename.push_back(std::string("/DAVIS346_right/30HZ_events"));
-  topics_rename.push_back(std::string("/DVXplorer_left/30HZ_events"));
-  topics_rename.push_back(std::string("/DVXplorer_right/30HZ_events"));
+  topics_rename.push_back(std::string("/left_event"));
+  topics_rename.push_back(std::string("/right_event"));
   for(size_t i = 0;i < topics.size(); i++)
   {
     rosbag::View view(bag_src, rosbag::TopicQuery(topics[i]));

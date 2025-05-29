@@ -6,9 +6,15 @@ ENV WORKSPACE=/catkin_ws_dvs
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    git nano autoconf libtool libsuitesparse-dev python3-catkin-tools python3-osrf-pycommon \
-    gnome-terminal dbus-x11 python3-pip wget && \
+    git nano autoconf libtool libsuitesparse-dev python3-catkin-tools \
+    python3-osrf-pycommon gnome-terminal dbus-x11 python3-pip wget \
+    libhdf5-dev software-properties-common gfortran && \
     apt-get upgrade -y
+
+RUN add-apt-repository ppa:inivation-ppa/inivation && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    install libcaer-dev
 
 RUN pip install evo h5py hdf5plugin
 
@@ -28,7 +34,8 @@ RUN sed -i '15i \    ceres_catkin' ESVIO/feature_tracker/CMakeLists.txt
 RUN cd ${WORKSPACE}/src && \
     catkin build ceres_catkin && \
     catkin build camera_model && \
-    catkin build esvio_estimator feature_tracker pose_graph
+    catkin build esvio_estimator feature_tracker pose_graph \
+    catkin build davis_ros_driver dvs_renderer 
 
 RUN echo "export NVIDIA_VISIBLE_DEVICES=all" >> /root/.bashrc
 RUN echo "export NVIDIA_DRIVER_CAPABILITIES=all" >> /root/.bashrc

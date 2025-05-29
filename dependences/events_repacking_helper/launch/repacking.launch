@@ -6,11 +6,7 @@
 </launch> -->
 
 <launch>
-
-  <node name="EventMessageEditor" pkg="events_repacking_helper" type="EventMessageEditor" output="screen" required="true"
-    args="/home/cpy/Datasets/ECMD/highspeed_all_0627_highway_231_303/highspeed_all_0627_highway_231_303.bag
-          /home/cpy/Datasets/ECMD/highspeed_all_0627_highway_231_303/highspeed_all_0627_highway_231_303_events.bag">
-  </node>
-
-
+  <param name="bag_in" value="$(arg bag_in)"/>
+  <param name="bag_out" value="$(arg bag_out)"/>
+  <node pkg="events_repacking_helper" type="EventMessageEditor" name="EventMessageEditor" output="screen" required="true"/>
 </launch>
