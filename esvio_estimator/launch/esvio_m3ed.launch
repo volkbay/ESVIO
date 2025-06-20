@@ -1,7 +1,7 @@
 <launch>
-
-    <arg name="config_path" default = "$(find feature_tracker)/../config/esvio_m3ed/esvio.yaml" />
-    <arg name="esvio_path" default = "$(find feature_tracker)/../config/esvio_m3ed/" />
+    <arg name="sequence"/>
+    <arg name="config_path" value="$(find feature_tracker)/../config/esvio_m3ed/$(arg sequence)/esvio.yaml" />
+    <arg name="esvio_path" value="$(find feature_tracker)/../config/esvio_m3ed/$(arg sequence)/" />
     
     <!-- stereo event feature -->
     <node name="stereo_event_tracker" pkg="feature_tracker" type="stereo_event_tracker" output="screen" respawn="true">

@@ -8,7 +8,7 @@ find_package(HDF5 COMPONENTS CXX REQUIRED)
 find_package(rosbag REQUIRED std_msgs REQUIRED)
 
 # modify this path to your ROS installation for dvs_mgs
-set(ROS_INCLUDE_DIR /catkin_ws_dvs/devel/include)
+set(ROS_INCLUDE_DIR $ENV{WORKSPACE}/devel/include)
 
 include_directories(
         ${rosbag_INCLUDE_DIRS}

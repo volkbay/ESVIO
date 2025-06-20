@@ -124,7 +124,7 @@ int main(int argc, char *argv[]){
                 t_offset = offset_data[0];
             else
                 t_offset = 0;
-            t_offset = 1;
+            t_offset = 1;  // NOTE: fix [volkbay]
             cout<<"Writing to rosbag #iteration"<<i<<" at offset "<<hslab_offset<<" containing "<<t.size()<<" events"<<endl;
             // Write to rosbag
 
