@@ -53,7 +53,7 @@ RUN cd ${WORKSPACE}/src/ESVIO/dependences && \
 
 # Add LZF filter
 RUN cd ${WORKSPACE}/src/ESVIO/dependences && \
-    git clone git@github.com:h5py/h5py.git && \
+    git clone https://github.com/h5py/h5py.git && \
     cd h5py/lzf && \
     h5fc -I"lzf" -O2 -fPIC -shared lzf/*.c lzf_filter.c -lhdf5 -o liblzf_filter.so && \
     cp liblzf_filter.so ${HDF5_PLUGIN_PATH}/
