@@ -36,11 +36,11 @@ if __name__ == "__main__":
     bridge = CvBridge()
 
     dst_bag_paths = {
-        'imu': os.path.join(input_folder, seq_name, 'bags',
+        'imu': os.path.join(input_folder, 'bags',
                             seq_name + '.imu.bag'),
-        'left_camera': os.path.join(input_folder, seq_name, 'bags',
+        'left_camera': os.path.join(input_folder, 'bags',
                                     seq_name + '.left_camera.bag'),
-        'right_camera': os.path.join(input_folder, seq_name, 'bags',
+        'right_camera': os.path.join(input_folder, 'bags',
                                      seq_name + '.right_camera.bag')
     }
 

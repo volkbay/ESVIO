@@ -21,12 +21,16 @@ SEQ_DIR=${DATASET_DIR}${SEQ_NAME}/
 H5_FILE=${SEQ_DIR}${SEQ_NAME}_data.h5
 SINGLE_BAG_PREFIX=${SEQ_DIR}bags/${SEQ_NAME}
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-mkdir ${SEQ_DIR}bags/
+# Alias for events_h52bag 
+events_h52bag() {
+  ${SCRIPT_DIR}/../dependences/events_h52bag/build/events_h52bag "$@"
+}
 
 # From .h5 to a single calibration YAML file (all intrinsic and extrinsic)
 python3 ${SCRIPT_DIR}/hdf2calib.py --input_folder ${SEQ_DIR} --sequence_name ${SEQ_NAME}
 
 # IMU and camera frames in the .h5 to single-topic rosbags
+mkdir ${SEQ_DIR}bags/
 python3 ${SCRIPT_DIR}/hdf2imu_and_cams.py --input_folder ${SEQ_DIR} --sequence_name ${SEQ_NAME}
 
 # Event .h5 to single-topic rosbags
