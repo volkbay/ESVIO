@@ -58,11 +58,12 @@ RUN cd ${WORKSPACE}/src/ESVIO/dependences && \
     h5fc -I"lzf" -O2 -fPIC -shared lzf/*.c lzf_filter.c -lhdf5 -o liblzf_filter.so && \
     cp liblzf_filter.so ${HDF5_PLUGIN_PATH}/
 
-RUN source ${WORKSPACE}/devel/setup.bash
-RUN cd ${WORKSPACE}/src/ESVIO/dependences/events_h52bag && \
+RUN /bin/bash -c "\
+    source /opt/ros/${ROS_DISTRO}/setup.bash && \
+    cd ${WORKSPACE}/src/ESVIO/dependences/events_h52bag && \
     mkdir build && cd build && \
     cmake .. && \
-    make
+    make"
 
 RUN cd ${WORKSPACE}/src && \
     catkin build mpl_dataset_toolbox events_repacking_helper
