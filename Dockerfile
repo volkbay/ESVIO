@@ -37,11 +37,13 @@ RUN cd ${WORKSPACE}/src && \
     catkin build esvio_estimator feature_tracker pose_graph && \
     catkin build davis_ros_driver dvs_renderer 
 
-# HDF to ROSBAG conversion
+# (begin) HDF to ROSBAG conversion
 ENV HDF5_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/hdf5/plugin
-RUN pip install h5py 
-# hdf5plugin
+RUN mkdir ${HDF5_PLUGIN_PATH}
 
+RUN pip install h5py
+
+# Add blosc filter
 RUN cd ${WORKSPACE}/src/ESVIO/dependences && \
     git clone https://github.com/Blosc/hdf5-blosc.git && \
     cd hdf5-blosc && \
@@ -49,12 +51,14 @@ RUN cd ${WORKSPACE}/src/ESVIO/dependences && \
     cmake .. && \
     make && cp libH5Zblosc.so ${HDF5_PLUGIN_PATH}/
 
+# Add LZF filter
 RUN cd ${WORKSPACE}/src/ESVIO/dependences && \
     git clone git@github.com:h5py/h5py.git && \
     cd h5py/lzf && \
     h5fc -I"lzf" -O2 -fPIC -shared lzf/*.c lzf_filter.c -lhdf5 -o liblzf_filter.so && \
     cp liblzf_filter.so ${HDF5_PLUGIN_PATH}/
 
+RUN source ${WORKSPACE}/devel/setup.bash
 RUN cd ${WORKSPACE}/src/ESVIO/dependences/events_h52bag && \
     mkdir build && cd build && \
     cmake .. && \
@@ -62,6 +66,7 @@ RUN cd ${WORKSPACE}/src/ESVIO/dependences/events_h52bag && \
 
 RUN cd ${WORKSPACE}/src && \
     catkin build mpl_dataset_toolbox events_repacking_helper
+# (end) HDF to ROSBAG conversion
 
 RUN echo "export NVIDIA_VISIBLE_DEVICES=all" >> /root/.bashrc
 RUN echo "export NVIDIA_DRIVER_CAPABILITIES=all" >> /root/.bashrc

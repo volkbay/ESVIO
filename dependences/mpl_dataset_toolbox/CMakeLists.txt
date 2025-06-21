@@ -38,6 +38,7 @@ catkin_package(
 
 include_directories(
   include
+  ${CMAKE_CURRENT_SOURCE_DIR}/prophesee_event_msgs
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
   ${PCL_INCLUDE_DIRS}

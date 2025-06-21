@@ -5,8 +5,8 @@
 #include <geometry_msgs/PoseStamped.h>
 // #include <mpl_dataset_toolbox/Event.h>
 // #include <mpl_dataset_toolbox/EventArray.h>
-#include </catkin_ws_dvs/src/mpl_dataset_toolbox/prophesee_event_msgs/Event.h>
-#include </catkin_ws_dvs/src/mpl_dataset_toolbox/prophesee_event_msgs/EventArray.h>
+#include <Event.h>
+#include <EventArray.h>
 #include <ros/package.h>
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
