@@ -2,5 +2,5 @@
   ONBn_fine: 216, PrBp_coarse: 2, PrBp_fine: 75, PrSFBp_coarse: 2, PrSFBp_fine: 5,
   RefrBp_coarse: 2, RefrBp_fine: 128, aps_enabled: true, dvs_enabled: true, exposure: 4000,
   frame_delay: 0, imu_acc_scale: 3, imu_enabled: true, imu_gyro_scale: 3, max_events: 0,
-  streaming_rate: 30,  autoexposure_enabled: true}
+  streaming_rate: 40,  autoexposure_enabled: true}
 
