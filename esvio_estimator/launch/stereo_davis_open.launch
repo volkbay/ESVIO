@@ -2,7 +2,7 @@
   <!-- master DAVIS -->
   <node ns="davis_left" name="davis_ros_driver" pkg="davis_ros_driver" type="davis_ros_driver" output="screen">
     <param name="serial_number" type="str" value="00000919" />
-    <rosparam command="load" file="$(find davis_ros_driver)/config/DAVIS346.yaml" />
+    <rosparam command="load" file="$(find davis_ros_driver)/config/DAVIS346L.yaml" />
     <param name="autoexposure_enabled" value="true"/>
     <param name="master" value="True"/>
 
@@ -17,7 +17,7 @@
   <!-- slave DAVIS -->
   <node ns="davis_right" name="davis_ros_driver" pkg="davis_ros_driver" type="davis_ros_driver" output="screen">
     <param name="serial_number" type="str" value="00000591" />
-    <rosparam command="load" file="$(find davis_ros_driver)/config/DAVIS346.yaml" />
+    <rosparam command="load" file="$(find davis_ros_driver)/config/DAVIS346R.yaml" />
     <param name="autoexposure_enabled" value="true"/>
     <param name="master" value="False"/>
 
