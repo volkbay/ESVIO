@@ -72,6 +72,7 @@ RUN cd ${WORKSPACE}/src && \
 RUN echo "export NVIDIA_VISIBLE_DEVICES=all" >> /root/.bashrc
 RUN echo "export NVIDIA_DRIVER_CAPABILITIES=all" >> /root/.bashrc
 RUN echo "export QT_X11_NO_MITSHM=1" >> /root/.bashrc
+RUN echo "export DISABLE_ROS1_EOL_WARNINGS=1" >> /root/.bashrc
 RUN echo "source ${WORKSPACE}/devel/setup.bash" >> /root/.bashrc
 
 # (begin) ORIN Specific
