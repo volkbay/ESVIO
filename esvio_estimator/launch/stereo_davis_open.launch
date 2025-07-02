@@ -1,7 +1,7 @@
 <launch>
   <!-- master DAVIS -->
   <node ns="davis_left" name="davis_ros_driver" pkg="davis_ros_driver" type="davis_ros_driver" output="screen">
-    <param name="serial_number" type="str" value="AERS0919" />
+    <param name="serial_number" type="str" value="AERS0004" />
     <rosparam command="load" file="$(find davis_ros_driver)/config/DAVIS346L.yaml" />
     <param name="autoexposure_enabled" value="true"/>
     <param name="master" value="True"/>

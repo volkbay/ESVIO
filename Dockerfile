@@ -74,14 +74,15 @@ RUN echo "export NVIDIA_DRIVER_CAPABILITIES=all" >> /root/.bashrc
 RUN echo "export QT_X11_NO_MITSHM=1" >> /root/.bashrc
 RUN echo "source ${WORKSPACE}/devel/setup.bash" >> /root/.bashrc
 
-# ORIN Specific
-# RUN apt install libcanberra-gtk3-dev
+# (begin) ORIN Specific
+# RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libcanberra-gtk3-dev
 # RUN wget https://github.com/libffi/libffi/releases/download/v3.4.8/libffi-3.4.8.tar.gz
 # RUN tar -xzvf libffi-3.4.8.tar.gz 
-# RUN cd libffi-3.4.8
-# RUN ./configure --prefix=/usr/local
-# RUN make -j$(nproc)
-# RUN sudo make install
+# RUN cd libffi-3.4.8 && \
+#     ./configure --prefix=/usr/local && \
+#     make -j$(nproc) && \
+#     sudo make install
+# (end) ORIN Specific
 
 ENTRYPOINT ["/bin/bash"]
 
